@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula Back-Ende 3 Ano - Polo Arapongas</title>
+</head>
+<body>
+   <h1>Calcule a Media:</h1>
+   <button onclick="validae()">Lançe as notas</button>
+   <script>
+       function validar(){
+         cont=1;
+         var media = 0
+         let nome = Window.pront('Qual e o deu mone? ')
+          while (cont <= 4) {
+             var notas = parsefloat(prompt)(`Qual a nota${cont}?`)
+             media=media+notas;
+             cont ++
+          }
+          window.alert(`Ola, ${media/4}! `)
+       }
+   </script>
+</body>
+</html>
