@@ -1,28 +1,23 @@
 <!DOCTYPE html>
-<html>
 <head>
-    <title>Aula Back-End 3º Ano Polo Arapongas</title>
+    <title>Aula Back-Ende</title>
 </head>
 <body>
-    <h1>Faça uma conversão de distâncias:</h1>
+    <h1>Faça uma conversão de distância:</h1>
     <button onclick="calcular()">Faça a venda</button>
 
+
     <script>
-        function calcular() {
-            let distancia = Number(window.prompt('Qual a medida em km?'));
-            
-            let emCentimetros = distancia * 100000;
-            let emMetros = distancia * 1000;
-            let emMilhas = distancia / 1.609;
-            let emJardas = distancia * 1094;
-            let emPes = distancia * 3281;
-            
-            window.alert(`A distância em centímetros é de ${emCentimetros} cm.\n`
-                         + `A distância em metros é de ${emMetros} m.\n`
-                         + `A distância em milhas é de ${emMilhas} milhas.\n`
-                         + `A distância em jardas é de ${emJardas} jardas.\n`
-                         + `A distância em pés é de ${emPes} pés.`);
+        function calcular(){
+            let distancia = Number(window.prompt('Qual salario do individuo:'))
+            let n2 = Number(window.prompt('Qual percentual do reajuste salarial:'))
+
+            let novosalar = n1-(n1*(n2/100))
+
+            let res = document.getElementById('resultado')
+            res.innerHTML = `<p> O novo salario com o reajuste é de R$ ${novosalar.toFixed(2)}</p>`
         }
     </script>
+    
 </body>
 </html>
