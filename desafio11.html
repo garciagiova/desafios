@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Números com JS</title>
+</head>
+<body>
+<h1>Média do aluno v1.0</h1>
+<button onclick="media()">Calcular média</button>
+<section id="situacao">
+<p>0 resultado vai aparecer aqui...</p>
+</section>
+<script>
+function media() {
+    // Corrigir o uso da palavra 'let' com 'L' minúsculo e adicionar aspas corretas
+    let nom = window.prompt("Qual é o nome do aluno?");
+    
+    // Corrigir as aspas e as expressões dentro do prompt
+    let nota1 = Number(window.prompt(`Qual foi a primeira nota de ${nom}?`));
+    let nota2 = Number(window.prompt(`Qual foi a segunda nota de ${nom}?`));
+    let nota3 = Number(window.prompt(`Qual foi a terceira nota de ${nom}?`));
+    let nota4 = Number(window.prompt(`Qual foi a quarta nota de ${nom}?`));
+    
+    // Corrigir a fórmula para calcular a média
+    let med = (nota1 + nota2 + nota3 + nota4) / 4;
+    
+    // Corrigir a manipulação do DOM para exibir o resultado
+    let res = document.getElementById('situacao');
+    res.innerHTML = `<p>Calculando a média final de <mark>${nom}</mark>.</p>`;
+    res.innerHTML += `<p>A média final será <mark>${med.toFixed(2)}</mark>.</p>`;
+}
+</script>
+</body>
+</html>
