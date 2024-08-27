@@ -1,0 +1,48 @@
+<desafio14.html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Média</title>
+    <script>
+        function calcularMedia() {
+            // Obter valores das notas dos trimestres
+            var nota1 = parseFloat(document.getElementById('nota1').value);
+            var nota2 = parseFloat(document.getElementById('nota2').value);
+            var nota3 = parseFloat(document.getElementById('nota3').value);
+            var nota4 = parseFloat(document.getElementById('nota4').value);
+            
+            // Verificar se todos os campos estão preenchidos
+            if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3) || isNaN(nota4)) {
+                alert("Por favor, preencha todas as notas corretamente.");
+                return;
+            }
+
+            // Calcular a média
+            var media = (nota1 + nota2 + nota3 + nota4) / 4;
+
+            // Determinar se o aluno está aprovado ou reprovado
+            var resultado = media >= 6.0 ? "Aprovado" : "Reprovado";
+
+            // Exibir a média e o resultado
+            document.getElementById('resultado').innerText = 
+                "Média: " + media.toFixed(2) + " - Status: " + resultado;
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculadora de Média do Aluno</h1>
+    <form onsubmit="event.preventDefault(); calcularMedia();">
+        <label for="nota1">Nota do 1º Trimestre:</label>
+        <input type="number" id="nota1" step="0.1" required><br><br>
+        <label for="nota2">Nota do 2º Trimestre:</label>
+        <input type="number" id="nota2" step="0.1" required><br><br>
+        <label for="nota3">Nota do 3º Trimestre:</label>
+        <input type="number" id="nota3" step="0.1" required><br><br>
+        <label for="nota4">Nota do 4º Trimestre:</label>
+        <input type="number" id="nota4" step="0.1" required><br><br>
+        <input type="submit" value="Calcular Média">
+    </form>
+    <p id="resultado"></p>
+</body>
+</html>
