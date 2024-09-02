@@ -1,1 +1,32 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ler Produto e Dar Desconto</title>
+</head>
+<body>
+    <h1>Calcular Desconto!</h1>
+    <button onclick="desconto()">Iniciar a soma</button>
+ 
+    <section id="resultado">
+        <p>O resultado é :</p>
+    </section>
+
+    <script>
+        function desconto() {
+            // Solicita o preço do produto e o desconto
+            let n1 = Number(window.prompt('Qual é o preço do produto?'));
+            let n2 = Number(window.prompt('Qual é o desconto do produto em %?'));
+
+            // Calcula o preço com desconto
+            let desc = n1 - (n1 * (n2 / 100));
+
+            // Obtém o elemento para exibir o resultado
+            let res = document.getElementById('resultado');
+            res.innerHTML = `<p>O preço do produto cheio é R$ ${n1.toFixed(2)}, o desconto foi de ${n2.toFixed(1)}%, resultando no preço final de R$ ${desc.toFixed(2)} reais.</p>`;
+        }
+    </script>
+</body>
+</html>
