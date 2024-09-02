@@ -1,36 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-     <title>Aula Back-Ende 3 Ano - Polo Arapongas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula Back-Ende 3 Ano - Polo Arapongas</title>
 </head>
 <body>
-    <h1>Calcule a Media de Alaunos:</h1>
-    <button onclick="validar()">Lançe a Media!</button>
+    <h1>Calcule a Média dos Alunos:</h1>
+    <button onclick="validar()">Lançar a Média!</button>
     <script>
         function validar() {
-            conta1;
-            var media = window.pronpt('Qual e o seu nome? ')
-
-            While (cont <= 4) {
-                var notas = parseFloat(prompt('Qual a nota ${cont}? '))
-                media=media+notas;
-                cont ++
-            }
-            media=media/4
+            // Inicializa variáveis
+            let somaNotas = 0;
+            let cont = 1;
             
-            if (media >=60){
-                result = "Aprovado"
-            }else{
-                result = "Reprovado"
+            // Solicita o nome do aluno
+            let nome = window.prompt('Qual é o seu nome? ');
+            
+            // Verifica se o nome foi informado
+            if (!nome) {
+                window.alert("Nome não informado.");
+                return;
             }
-            window.alert(`O aluno ${nome},tem a media ${media}, e esta ${result}`)
+            
+            // Coleta e soma as notas
+            while (cont <= 4) {
+                let nota = parseFloat(prompt(`Qual a nota ${cont}? `));
+                
+                // Verifica se a nota é um número válido
+                if (isNaN(nota)) {
+                    window.alert("Nota inválida. Por favor, insira um número.");
+                    return;
+                }
+                
+                somaNotas += nota;
+                cont++;
+            }
+            
+            // Calcula a média
+            let media = somaNotas / 4;
+            
+            // Determina o resultado com base na média
+            let resultado = media >= 60 ? "Aprovado" : "Reprovado";
+            
+            // Exibe o resultado
+            window.alert(`O aluno ${nome}, tem a média ${media.toFixed(2)}, e está ${resultado}.`);
         }
     </script>
 </body>
 <footer>
     <style>
-        footer{ bottom: 0; position: fixed; width: 100%; text-align: left:}
+        footer {
+            bottom: 0;
+            position: fixed;
+            width: 100%;
+            text-align: left;
+        }
     </style>
-    <h2> parseFloat e uma funçao incorporada no JavaScript que permite realizar essa conversao para um numero de ponto fluente. </h2>
+    <h2>parseFloat é uma função incorporada no JavaScript que permite converter uma string em um número de ponto flutuante.</h2>
 </footer>
 </html>
