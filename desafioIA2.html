@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrossel de Imagens</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .carousel-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #a56666;
+            transition: background-color 0.5s ease;
+        }
+        .carousel {
+            width: 70%;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-images img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #9c6197;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff9362;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container" id="carousel-container">
+        <div class="carousel" id="carousel-container">
+            <div class="carousel-images" id="carousel-images">
+                <img src="/tmp/guest-nmgbtn/Área de Trabalho/corvo.jpeg" alt="Imagem 1">
+                <img src="/tmp/guest-nmgbtn/Área de Trabalho/tempestade.jpg" alt="Imagem 2">
+                <img src="/tmp/guest-nmgbtn/Área de Trabalho/castelo.jpg" alt="Imagem 3">
+            </div>
+        </div>
+    </div>
+    
+    <div class="button-container">
+        <button onclick="changeImage()">Próxima Imagem</button>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.getElementById('carousel-images');
+        const container = document.getElementById('carousel-container');
+        const backgrounds = ['#ff9999', '#99ccff', '#99ff99']; // Cores de fundo
+
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % 3; // Mudar o índice
+            const offset = -currentIndex * 100; // Calcular o deslocamento
+            images.style.transform = `translateX(${offset}%)`; // Mudar a imagem
+            container.style.backgroundColor = backgrounds[currentIndex]; // Mudar a cor de fundo
+        }
+    </script>
+</body>
+</html>
