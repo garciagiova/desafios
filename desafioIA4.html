@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Dívida do Cartão de Crédito</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Dívida do Cartão de Crédito</h1>
+        <form id="debtForm">
+            <label for="valorDivida">Valor da Dívida:</label>
+            <input type="number" id="valorDivida" required>
+
+            <label for="mesesAtraso">Meses de Atraso:</label>
+            <input type="number" id="mesesAtraso" required>
+
+            <label for="taxaJuros">Taxa de Juros (%):</label>
+            <input type="number" id="taxaJuros" required>
+
+            <button type="submit">Calcular</button>
+        </form>
+
+        <div id="resultado" class="resultado"></div>
+    </div>
+
+    <script>
+        document.getElementById('debtForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const valorDivida = parseFloat(document.getElementById('valorDivida').value);
+            const mesesAtraso = parseInt(document.getElementById('mesesAtraso').value);
+            const taxaJuros = parseFloat(document.getElementById('taxaJuros').value) / 100;
+
+            const montante = valorDivida * Math.pow(1 + taxaJuros, mesesAtraso);
+            const resultadoDiv = document.getElementById('resultado');
+
+            resultadoDiv.innerHTML = `Total da Dívida após ${mesesAtraso} meses: R$ ${montante.toFixed(2)}`;
+        });
+    </script>
+</body>
+</html>
