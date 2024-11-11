@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Pesquisa</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo do corpo da página */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, black, pink, white); /* Gradiente preto, rosa e branco */
+            margin: 0;
+            color: white;
+        }
+
+        /* Estilo do container do formulário */
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.8); /* Fundo branco semitransparente */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            color: black; /* Cor do texto no formulário */
+        }
+
+        /* Títulos */
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Estilo das labels e inputs */
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        form input, form select, form button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Estilo do botão */
+        form button {
+            background-color: pink;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+        }
+
+        form button:hover {
+            background-color: darkpink;
+        }
+
+        /* Estilo da mensagem de agradecimento */
+        #thankYouMessage {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+            font-weight: bold;
+        }
+
+        /* Esconde a mensagem de agradecimento inicialmente */
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Formulário de Pesquisa</h2>
+        <form id="surveyForm">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phone">Telefone:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="education">Escolaridade:</label>
+            <select id="education" name="education" required>
+                <option value="">Selecione...</option>
+                <option value="ensino_medio">Ensino Médio</option>
+                <option value="ensino_superior">Ensino Superior</option>
+                <option value="pos_graduacao">Pós-Graduação</option>
+            </select>
+
+            <label for="city">Cidade:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="gender">Sexo:</label>
+            <select id="gender" name="gender" required>
+                <option value="M" selected>Masculino</option>
+                <option value="F">Feminino</option>
+            </select>
+
+            <button type="submit">Enviar</button>
+        </form>
+        <div id="thankYouMessage" class="hidden">
+            <p>Obrigado por responder o formulário!</p>
+        </div>
+    </div>
+
+    <script>
+        // Adiciona o evento de envio do formulário
+        document.getElementById('surveyForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o comportamento padrão de envio do formulário
+
+            // Exibe a mensagem de agradecimento
+            document.getElementById('thankYouMessage').classList.remove('hidden');
+            
+            // Limpa o formulário após o envio
+            document.getElementById('surveyForm').reset();
+        });
+    </script>
+</body>
+</html>
