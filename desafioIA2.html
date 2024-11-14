@@ -1,82 +1,104 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrossel de Imagens</title>
+    <title>Galeria de Fotos</title>
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .carousel-container {
-            width: 100%;
-            height: 100vh;
+
+        body {
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #a56666;
-            transition: background-color 0.5s ease;
+            height: 100vh;
+            background: linear-gradient(to right, #002147, #ffd700), 
+                        url('caveirinhas.png'); /* Textura de caveirinhas */
+            background-size: cover, contain; /* Ajusta o tamanho da textura */
+            background-repeat: repeat; /* Faz a textura se repetir */
+            font-family: Arial, sans-serif;
         }
-        .carousel {
-            width: 70%;
-            max-width: 600px;
-            position: relative;
-            overflow: hidden;
-        }
-        .carousel-images {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .carousel-images img {
-            width: 100%;
+
+        .gallery-container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Fundo branco semi-transparente */
+            padding: 20px;
             border-radius: 10px;
         }
-        .button-container {
-            text-align: center;
-            margin-top: 20px;
+
+        .gallery {
+            display: flex;
+            gap: 10px; /* Espaço entre as imagens */
+            align-items: center;
+            justify-content: center;
         }
+
+        .gallery-image {
+            width: 200px;
+            height: auto;
+            border: 3px solid black; /* Moldura preta */
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+        }
+
         button {
+            margin: 10px;
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #9c6197;
-            color: white;
             border: none;
-            border-radius: 5px;
+            background-color: #002147;
+            color: #fff;
             cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
+
         button:hover {
-            background-color: #ff9362;
+            background-color: #ffd700;
+            color: #002147;
         }
     </style>
 </head>
 <body>
-    <div class="carousel-container" id="carousel-container">
-        <div class="carousel" id="carousel-container">
-            <div class="carousel-images" id="carousel-images">
-                <img src="/tmp/guest-nmgbtn/Área de Trabalho/corvo.jpeg" alt="Imagem 1">
-                <img src="/tmp/guest-nmgbtn/Área de Trabalho/tempestade.jpg" alt="Imagem 2">
-                <img src="/tmp/guest-nmgbtn/Área de Trabalho/castelo.jpg" alt="Imagem 3">
-            </div>
+    <div class="gallery-container">
+        <div class="gallery">
+            <img src="mao2.jpg" alt="Imagem 1" class="gallery-image">
+            <img src="coraçao.jpg" alt="Imagem 2" class="gallery-image">
+            <img src="mao.jpg" alt="Imagem 3" class="gallery-image">
         </div>
-    </div>
-    
-    <div class="button-container">
-        <button onclick="changeImage()">Próxima Imagem</button>
+        <button id="prev" onclick="prevImage()">Anterior</button>
+        <button id="next" onclick="nextImage()">Próxima</button>
     </div>
 
     <script>
-        let currentIndex = 0;
-        const images = document.getElementById('carousel-images');
-        const container = document.getElementById('carousel-container');
-        const backgrounds = ['#ff9999', '#99ccff', '#99ff99']; // Cores de fundo
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.gallery-image');
 
-        function changeImage() {
-            currentIndex = (currentIndex + 1) % 3; // Mudar o índice
-            const offset = -currentIndex * 100; // Calcular o deslocamento
-            images.style.transform = `translateX(${offset}%)`; // Mudar a imagem
-            container.style.backgroundColor = backgrounds[currentIndex]; // Mudar a cor de fundo
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.style.display = i === index ? 'block' : 'none';
+            });
         }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            showImage(currentImageIndex);
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            showImage(currentImageIndex);
+        }
+
+        // Exibe a primeira imagem ao carregar a página
+        showImage(currentImageIndex);
     </script>
 </body>
 </html>
