@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folha de Pagamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #6a0dad; /* Fundo roxo escuro */
+            color: #ffffff; /* Texto branco */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #8a2be2; /* Roxo médio */
+            width: 70%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+        }
+        input[type="text"]:focus, input[type="number"]:focus {
+            outline: none;
+            border: 2px solid #ffffff;
+            background-color: #d8bfd8; /* Roxo claro */
+        }
+        button {
+            padding: 12px;
+            background-color: #9932cc; /* Roxo vibrante */
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #ba55d3; /* Roxo mais claro */
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            color: #ffffff;
+        }
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #4b0082; /* Roxo escuro */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Folha de Pagamento</h1>
+        <form id="paymentForm">
+            <label for="name">Nome do Funcionário:</label>
+            <input type="text" id="name" placeholder="Digite o nome" required>
+
+            <label for="salary">Salário Bruto (R$):</label>
+            <input type="number" id="salary" placeholder="Digite o salário bruto" required>
+
+            <button type="button" onclick="addToTable()">Adicionar à Folha</button>
+        </form>
+
+        <table id="payrollTable">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Salário Bruto (R$)</th>
+                    <th>Alíquota (%)</th>
+                    <th>Desconto (R$)</th>
+                    <th>Salário Líquido (R$)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dados adicionados dinamicamente -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function calcularAliquota(salarioBruto) {
+            let aliquota;
+            if (salarioBruto >= 5000) {
+                aliquota = 17.5;
+            } else if (salarioBruto >= 4000) {
+                aliquota = 12;
+            } else if (salarioBruto >= 3000) {
+                aliquota = 7.5;
+            } else if (salarioBruto >= 1800) {
+                aliquota = 3.5;
+            } else {
+                aliquota = 0;
+            }
+            return aliquota;
+        }
+
+        function addToTable() {
+            const name = document.getElementById('name').value.trim();
+            const salary = parseFloat(document.getElementById('salary').value.trim());
+
+            if (!name || isNaN(salary) || salary <= 0) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            const aliquota = calcularAliquota(salary);
+            const desconto = (aliquota / 100) * salary;
+            const salarioLiquido = salary - desconto;
+
+            const tableBody = document.getElementById('payrollTable').querySelector('tbody');
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${name}</td>
+                <td>R$ ${salary.toFixed(2)}</td>
+                <td>${aliquota.toFixed(1)}%</td>
+                <td>R$ ${desconto.toFixed(2)}</td>
+                <td>R$ ${salarioLiquido.toFixed(2)}</td>
+            `;
+
+            tableBody.appendChild(row);
+
+            // Limpa os campos do formulário
+            document.getElementById('paymentForm').reset();
+        }
+    </script>
+</body>
+</html>
+
